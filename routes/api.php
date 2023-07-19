@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddOnController;
+use App\Http\Controllers\FinishController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -69,4 +70,11 @@ Route::prefix('addon')->as(':addon')->group(function(){
     )->name('user');
 
 
+});
+
+Route::prefix('finish')->as(':finish')->group(function(){
+    Route::get(
+        uri : '/',
+        action: FinishController::class
+    )->name('user');
 });

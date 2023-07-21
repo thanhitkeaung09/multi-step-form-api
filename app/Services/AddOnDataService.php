@@ -24,7 +24,9 @@ class AddOnDataService {
 
     public function update($request)
     {
-        AddOn::query()->delete();
+        // AddOn::query()->delete();
+        $add_on = AddOn::truncate();
+        // $add_on->turncate();
         $user = User::query()->first();
         foreach($request->add_on_ids as $id){
             AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen,'type'=>$request->type]);

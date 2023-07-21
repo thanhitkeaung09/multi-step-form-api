@@ -14,7 +14,7 @@ class FinishController extends Controller
     {
         $user = User::query()->first();
         $plan = Plan::query()->first();
-        $add_on = AddOn::query()->where("user_id",$user->id)->get();
+        $add_on = AddOn::query()->where("user_id",$user->id)->get()->take(2);
         return new ApiSuccessResponse(["plan"=>$plan,"add_on"=>$add_on]);
     }
 }

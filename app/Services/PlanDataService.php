@@ -15,7 +15,8 @@ class PlanDataService {
             'user_id'=>$user->id,
             'title'=>$request->title,
             'price'=>$request->price,
-            'promotion'=>$request->promotion
+            'promotion'=>$request->promotion,
+            'type'=>$request->type
         ]);
         return 'Plan is created successfully';
     }
@@ -26,7 +27,8 @@ class PlanDataService {
         $plan->update([
             'title'=>$request->title,
             'price'=>$request->price,
-            'promotion'=>$request->promotion
+            'promotion'=>$request->promotion,
+            'type'=>$request->type
         ]);
         return "Plan is updated successfully";
     }

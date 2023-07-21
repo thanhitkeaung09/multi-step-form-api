@@ -12,14 +12,14 @@ class AddOnDataService {
     {
         $user = User::query()->first();
         foreach($request->add_on_ids as $id){
-            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen]);
+            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen,'type'=>$request->type]);
         }
         return "AddOn is created successfully";
     }
 
     public function get()
     {
-        return AddOn::query()->get();
+        return AddOn::query()->get()->take(2);
     }
 
     public function update($request)
@@ -27,7 +27,7 @@ class AddOnDataService {
         AddOn::query()->delete();
         $user = User::query()->first();
         foreach($request->add_on_ids as $id){
-            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen]);
+            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen,'type'=>$request->type]);
         }
         return "AddOn is updated successfully";
         

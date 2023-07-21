@@ -9,7 +9,8 @@ class PlanData implements Dto
     public function __construct(
         public string $title,
         public string $price,
-        public string|null $promotion
+        public string|null $promotion,
+        public string $type
     )
     {
         
@@ -20,7 +21,8 @@ class PlanData implements Dto
         return new PlanData(
                 title :$data['title'],
                 price : $data['price'],
-                promotion : $data['promotion']
+                promotion : $data['promotion'],
+                type : $data['type']
                 
         );
     }
@@ -30,7 +32,8 @@ class PlanData implements Dto
         return [
             'title'=>$this->title,
             'price'=>$this->price,
-            'promotion'=>$this->promotion
+            'promotion'=>$this->promotion,
+            'type'=>$this->type
         ];
     }
 }

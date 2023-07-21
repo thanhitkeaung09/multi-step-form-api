@@ -25,7 +25,8 @@ class PlanDataRequest extends FormRequest
         return [
             "title"=>['required'],
             "price"=>['required'],
-            "promotion"=>['nullable']
+            "promotion"=>['nullable'],
+            "type"=>['required']
         ];
     }
 
@@ -35,7 +36,8 @@ class PlanDataRequest extends FormRequest
             [
                 "title"=>$this->title,
                 "price"=>$this->price,
-                "promotion"=>$this->promotion
+                "promotion"=>$this->promotion,
+                "type"=>$this->type
             ]
         );
     }

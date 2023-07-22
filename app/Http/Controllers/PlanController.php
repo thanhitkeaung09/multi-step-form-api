@@ -24,4 +24,9 @@ class PlanController extends Controller
     {
         return new ApiSuccessResponse($this->planDataService->update($request)) ;
     }
+
+    public function get()
+    {
+        return new ApiSuccessResponse($this->planDataService->get());
+    }
 }

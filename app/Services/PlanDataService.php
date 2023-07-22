@@ -32,4 +32,9 @@ class PlanDataService {
         ]);
         return "Plan is updated successfully";
     }
+
+    public function get()
+    {
+        return Plan::query()->first();
+    }
 }

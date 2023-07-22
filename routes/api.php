@@ -51,6 +51,11 @@ Route::prefix('plan')->as(':plan')->group(function(){
         uri : '/update',
         action: [PlanController::class,'update']
     )->name('user');
+
+    Route::get(
+        uri : '/',
+        action: [PlanController::class,'get']
+    )->name('user');
 });
 
 Route::prefix('addon')->as(':addon')->group(function(){

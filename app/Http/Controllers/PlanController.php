@@ -15,12 +15,12 @@ class PlanController extends Controller
     {
         
     }
-    public function __invoke(PlanDataRequest $request)
+    public function __invoke(Request $request)
     {
-        return new ApiSuccessResponse($this->planDataService->create($request->payload()));
+        return new ApiSuccessResponse($this->planDataService->create($request));
     }
 
-    public function update(PlanDataRequest $request)
+    public function update(Request $request)
     {
         return new ApiSuccessResponse($this->planDataService->update($request)) ;
     }
@@ -28,5 +28,10 @@ class PlanController extends Controller
     public function get()
     {
         return new ApiSuccessResponse($this->planDataService->get());
+    }
+
+    public function old()
+    {
+        return new ApiSuccessResponse($this->planDataService->old());
     }
 }

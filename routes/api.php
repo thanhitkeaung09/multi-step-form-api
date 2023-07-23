@@ -56,6 +56,11 @@ Route::prefix('plan')->as(':plan')->group(function(){
         uri : '/',
         action: [PlanController::class,'get']
     )->name('user');
+
+    Route::get(
+        uri : '/old',
+        action: [PlanController::class,'old']
+    )->name('user');
 });
 
 Route::prefix('addon')->as(':addon')->group(function(){
@@ -72,6 +77,11 @@ Route::prefix('addon')->as(':addon')->group(function(){
     Route::post(
         uri : '/update',
         action: [AddOnController::class,'update']
+    )->name('user');
+
+    Route::get(
+        uri : '/old',
+        action: [AddOnController::class,'old']
     )->name('user');
 
 

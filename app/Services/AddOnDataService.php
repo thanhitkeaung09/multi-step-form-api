@@ -6,32 +6,50 @@ namespace App\Services;
 
 use App\Models\AddOn;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AddOnDataService {
     public function create($request)
     {
+        $ids = $request->ids;
         $user = User::query()->first();
-        foreach($request->add_on_ids as $id){
-            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen,'type'=>$request->type]);
+        foreach($ids as $id){
+            DB::table('add_on_users')->insert([
+                "add_on_id"=>$id,
+                "user_id"=>$user->id
+            ]);
         }
-        return "AddOn is created successfully";
+        return "Add On is created successfully";
+      
     }
 
     public function get()
     {
-        return AddOn::query()->get()->take(2);
+        return AddOn::query()->get()->take(3);
     }
 
     public function update($request)
     {
-        // AddOn::query()->delete();
-        $add_on = AddOn::truncate();
-        // $add_on->turncate();
-        $user = User::query()->first();
-        foreach($request->add_on_ids as $id){
-            AddOn::create(["user_id"=>$user->id,'add_on_id'=>$id,'is_choosen'=>$request->is_choosen,'type'=>$request->type]);
+        $planUser = User::query()->first();
+        $ids = $request->ids;
+        DB::table('add_on_users')->truncate();
+        foreach($ids as $id){
+            DB::table('add_on_users')
+            ->insert([
+                'add_on_id' => $id,
+                'user_id' => $planUser->id
+            ]);
         }
-        return "AddOn is updated successfully";
+        return "Plan is updated successfully";
         
+    }
+
+    public function old()
+    {
+        $datas = DB::table('add_on_users')->get();
+        foreach($datas as $data){
+            $data->is_choose = true;
+        }
+        return $datas;
     }
 }

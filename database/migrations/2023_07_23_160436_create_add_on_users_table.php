@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('add_ons', function (Blueprint $table) {
+        Schema::create('add_on_users', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('desc');
-            $table->string('month_price');
-            $table->string('year_price');
-            $table->string('month_value');
-            $table->string('year_value');
+            $table->foreignId('add_on_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('add_ons');
+        Schema::dropIfExists('add_on_users');
     }
 };

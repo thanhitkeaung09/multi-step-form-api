@@ -8,9 +8,12 @@ class PlanData implements Dto
 {
     public function __construct(
         public string $title,
-        public string $price,
+        public string $icon,
+        public string $month_price,
+        public string $year_price,
+        public string $priceString,
+        public string $priceYear,
         public string|null $promotion,
-        public string $type
     )
     {
         
@@ -20,9 +23,12 @@ class PlanData implements Dto
     {
         return new PlanData(
                 title :$data['title'],
-                price : $data['price'],
+                icon: $data['icon'],
+                month_price: $data['month_price'],
+                year_price: $data['year_price'],
+                priceString: $data['priceString'],
+                priceYear: $data['priceYear'],
                 promotion : $data['promotion'],
-                type : $data['type']
                 
         );
     }
@@ -31,9 +37,12 @@ class PlanData implements Dto
     {
         return [
             'title'=>$this->title,
-            'price'=>$this->price,
+            'icon'=>$this->icon,
+            "month_price"=>$this->month_price,
+            "year_price"=>$this->year_price,
+            "priceString"=>$this->priceString,
+            "priceYear"=>$this->priceYear,
             'promotion'=>$this->promotion,
-            'type'=>$this->type
         ];
     }
 }

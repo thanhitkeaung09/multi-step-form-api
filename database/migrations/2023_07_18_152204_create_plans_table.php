@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
-            $table->string('price');
-            $table->string('type');
+            $table->string('icon');
+            $table->string('month_price');
+            $table->string('year_price');
+            $table->string('priceString');
+            $table->string('priceYear');
             $table->string('promotion')->nullable();
             $table->timestamps();
         });

@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('year_price');
             $table->string('month_value');
             $table->string('year_value');
+            $table->boolean('is_choose')->default(false);
+            $table->boolean('is_month')->default(false);
+            $table->boolean('is_year')->default(false);
             $table->timestamps();
         });
     }

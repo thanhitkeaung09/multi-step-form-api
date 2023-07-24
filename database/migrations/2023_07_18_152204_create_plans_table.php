@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('priceYear');
             $table->string('promotion')->nullable();
             $table->boolean('is_choose')->default(false);
+            $table->boolean('is_month')->default(false);
+            $table->boolean('is_year')->default(false);
             $table->timestamps();
         });
     }

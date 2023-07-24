@@ -12,17 +12,33 @@ class PlanDataService {
     public function create($request)
     {
         $id = $request->id;
+        $type = $request->type;
+    
+        // Find the specific plan with the given ID
         $one_plan = Plan::find($id);
     
         if (!$one_plan) {
             return "Plan not found for the given ID.";
         }
     
-        // Update is_choose for all plans to false first
-        Plan::query()->update(['is_choose' => false]);
+        // Update is_month and is_year for all plans to false first
+        Plan::query()->update([
+            'is_month' => false,
+            'is_year' => false,
+            'is_choose' => false
+        ]);
     
-        // Set is_choose to true for the specific plan with the given ID
-        $one_plan->is_choose = true;
+        // Set is_month and is_year based on the given type
+        if ($type === 'month') {
+            $one_plan->is_choose = true;
+            $one_plan->is_month = true;
+            $one_plan->is_year = false;
+        } elseif ($type === 'year') {
+            $one_plan->is_choose = true;
+            $one_plan->is_month = false;
+            $one_plan->is_year = true;
+        }
+    
         $one_plan->save();
     
         return "Plan is created successfully";

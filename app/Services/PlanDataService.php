@@ -11,11 +11,20 @@ use Illuminate\Support\Facades\DB;
 class PlanDataService {
     public function create($request)
     {
-        $user = User::query()->first();
-        DB::table('plan_users')->insert([
-            "plan_id"=>$request->id,
-            "user_id"=>$user->id
-        ]);
+        $id = $request->id;
+        $one_plan = Plan::find($id);
+    
+        if (!$one_plan) {
+            return "Plan not found for the given ID.";
+        }
+    
+        // Update is_choose for all plans to false first
+        Plan::query()->update(['is_choose' => false]);
+    
+        // Set is_choose to true for the specific plan with the given ID
+        $one_plan->is_choose = true;
+        $one_plan->save();
+    
         return "Plan is created successfully";
     }
 

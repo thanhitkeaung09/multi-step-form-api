@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('priceString');
             $table->string('priceYear');
             $table->string('promotion')->nullable();
+            $table->boolean('is_choose')->default(false);
             $table->timestamps();
         });
     }
